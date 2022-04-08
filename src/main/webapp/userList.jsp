@@ -11,14 +11,13 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #aaa">
         <div>
-            <a href="https://www.javaguides.net" class="navbar-brand"> User
-                Management App </a>
+            <h3 class=" p-2"> Servlet APP </h3>
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Users</a></li>
+            <li><a href="<%=request.getContextPath()%>/user" class="btn btn-outline-dark">Users</a></li>
         </ul>
     </nav>
 </header>
@@ -43,7 +42,7 @@
                 <th>Login</th>
                 <th>Password</th>
                 <th>Email</th>
-                <th>Nick name</th>
+                <th>Nickname</th>
             </tr>
             </thead>
             <tbody>
@@ -65,7 +64,11 @@
                     <td>
                         <c:out value="${user.nickName}" />
                     </td>
-                    <td><a href="edit?userId=<c:out value='${user.userId}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?userId=<c:out value='${user.userId}' />">Delete</a></td>
+                    <td>
+                        <a href="edit?userId=<c:out value='${user.userId}'  />" class="btn btn-success" >Edit</a>
+<%--                        &nbsp;&nbsp;&nbsp;&nbsp;--%>
+                        <a href="delete?userId=<c:out value='${user.userId}' />  " class="btn btn-outline-danger" >Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

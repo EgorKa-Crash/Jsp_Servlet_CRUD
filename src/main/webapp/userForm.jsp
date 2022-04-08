@@ -12,13 +12,13 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #aaa">
         <div>
-            <a href="https://www.javaguides.net" class="navbar-brand"> User Management App </a>
+            <h3 class=" p-2"> Servlet APP </h3>
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Users</a></li>
+            <li><a href="<%=request.getContextPath()%>/user" class="btn btn-outline-dark">Users</a></li>
         </ul>
     </nav>
 </header>
@@ -67,9 +67,6 @@
                         <label>nickname</label> <input type="text" value="<c:out value='${user.nickName}' />"
                                                            class="form-control" name="nickName">
                     </fieldset>
-
-
-
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>
         </div>
