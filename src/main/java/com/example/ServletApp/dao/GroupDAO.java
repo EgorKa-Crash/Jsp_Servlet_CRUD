@@ -8,11 +8,15 @@ import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GroupDAO {
     public static void insertGroup(Groupp group) {
+        Date date = new Date();
+        group.setCreatingDate(new Timestamp(date.getTime()));
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.save(group);
@@ -21,7 +25,6 @@ public class GroupDAO {
     }
 
     public static void updateGroupp(Groupp group) {
-
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.update(group);

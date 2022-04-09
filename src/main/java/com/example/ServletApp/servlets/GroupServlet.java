@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-@WebServlet("/groupp")
+@WebServlet( urlPatterns = {"/group","/newGroup","/insertGroup","/deleteGroup","/editGroup","/updateGroup"})
 public class GroupServlet extends HttpServlet {
     private GroupDAO groupDAO;
 
@@ -32,6 +32,9 @@ public class GroupServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
+        String action2 = request.getRequestURI();
+        String action1 = request.getContextPath();
+        String action3 = request.getPathInfo();
 
         try {
             switch (action) {
@@ -63,10 +66,6 @@ public class GroupServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
 
         List<Groupp> listGroupp = groupDAO.getAllOfGroup();
-        //List<Userr> listUser = new ArrayList<>();
-        //listUser.add(new Userr(1,"1","1","1","1"));
-        //listUser.add(new Userr(2,"2","1","1","1"));
-        //listUser.add(new Userr(3,"3","1","1","1"));
         request.setAttribute("listGroupp", listGroupp);
         RequestDispatcher dispatcher = request.getRequestDispatcher("groupList.jsp");
         dispatcher.forward(request, response);
@@ -74,26 +73,24 @@ public class GroupServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("grouppForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("groupForm.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("grouppId"));
+        int id = Integer.parseInt(request.getParameter("groupId"));
         Groupp existingGroupp = groupDAO.getGroupp(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("grouppForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("groupForm.jsp");
         request.setAttribute("group", existingGroupp);
         dispatcher.forward(request, response);
     }
 
     private void insertGroupp(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("groupId"));
         String groupName = request.getParameter("groupName");
-        //Timestamp creatingDate = request.getParameter("creatingDate");
         String groupComment = request.getParameter("groupComment");
-        Groupp newGroupp = new Groupp(id, groupName, groupComment);
+        Groupp newGroupp = new Groupp(groupName, groupComment);
         groupDAO.insertGroup(newGroupp);
         response.sendRedirect("group");
     }
@@ -103,8 +100,10 @@ public class GroupServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("groupId"));
         String groupName = request.getParameter("groupName");
         String groupComment = request.getParameter("groupComment");
+        String creatingStr = request.getParameter("creatingDate");
+        Timestamp creatingDate = Timestamp.valueOf(creatingStr);
 
-        Groupp updateGroupp = new Groupp(id, groupName, groupComment);
+        Groupp updateGroupp = new Groupp(id, groupName, creatingDate, groupComment);
         groupDAO.updateGroupp(updateGroupp);
         response.sendRedirect("group");
     }

@@ -13,7 +13,12 @@ public class Groupp {
     public Groupp() {
     }
 
-    public Groupp(Integer groupId, String groupName, String groupComment) {
+    public Groupp(  String groupName, String groupComment) {
+        this.groupName = groupName;
+        this.groupComment = groupComment;
+    }
+
+    public Groupp(Integer groupId, String groupName,   String groupComment) {
         this.groupId = groupId;
         this.groupName = groupName;
         this.groupComment = groupComment;
@@ -48,7 +53,7 @@ public class Groupp {
     }
 
     @Basic
-    @Column(name = "creating_date", nullable = false)
+    @Column(name = "creating_date", nullable = true)
     public Timestamp getCreatingDate() {
         return creatingDate;
     }
