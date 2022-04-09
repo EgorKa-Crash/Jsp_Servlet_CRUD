@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Егор
+  Date: 09.04.2022
+  Time: 10:07
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -28,47 +35,43 @@
     <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
     <div class="container">
-        <h3 class="text-center">List of Users</h3>
+        <h3 class="text-center">List of groups</h3>
         <hr>
         <div class="container text-left">
 
-            <a href="<%=request.getContextPath()%>/new" class="btn btn-success">Add
-                New User</a>
+            <a href="<%=request.getContextPath()%>/newGroup" class="btn btn-success">Add
+                New group</a>
         </div>
         <br>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Nickname</th>
+                <th>Group name</th>
+                <th>Creating date</th>
+                <th>Groupc comment</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="user" items="${listUser}">
+            <c:forEach var="group" items="${listGroupp}">
 
                 <tr>
                     <td>
-                        <c:out value="${user.userId}" />
+                        <c:out value="${group.groupId}" />
                     </td>
                     <td>
-                        <c:out value="${user.login}" />
+                        <c:out value="${group.groupName}" />
                     </td>
                     <td>
-                        <c:out value="${user.password}" />
+                        <c:out value="${group.creatingDate}" />
                     </td>
                     <td>
-                        <c:out value="${user.email}" />
+                        <c:out value="${group.groupComment}" />
                     </td>
                     <td>
-                        <c:out value="${user.nickName}" />
-                    </td>
-                    <td>
-                        <a href="edit?userId=<c:out value='${user.userId}'  />" class="btn btn-success" >Edit</a>
-<%--                        &nbsp;&nbsp;&nbsp;&nbsp;--%>
-                        <a href="delete?userId=<c:out value='${user.userId}' />  " class="btn btn-outline-danger" >Delete</a>
+                        <a href="editGroup?groupId=<c:out value='${group.groupId}'  />" class="btn btn-success" >Edit</a>
+                            <%--                        &nbsp;&nbsp;&nbsp;&nbsp;--%>
+                        <a href="deleteGroup?groupId=<c:out value='${group.groupId}' />  " class="btn btn-outline-danger" >Delete</a>
                     </td>
                 </tr>
             </c:forEach>

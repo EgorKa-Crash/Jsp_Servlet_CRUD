@@ -19,6 +19,7 @@
 
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/user" class="btn btn-outline-dark">Users</a></li>
+            <li><a href="<%=request.getContextPath()%>/group" class="btn btn-outline-dark">Groups</a></li>
         </ul>
     </nav>
 </header>
