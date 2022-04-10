@@ -12,7 +12,7 @@
     <property name="show_sql">true</property>
 <!--    <mapping class="model.Groupofusers"/>-->
     <mapping class="com.example.ServletApp.entities.Groupp"/>
-<!--    <mapping class="model.Post"/>-->
+    <mapping class="com.example.ServletApp.entities.Post"/>
 <!--    <mapping class="model.Subscriptin"/>-->
     <mapping class="com.example.ServletApp.entities.Userr"/>
   </session-factory>

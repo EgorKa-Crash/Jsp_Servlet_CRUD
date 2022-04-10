@@ -25,8 +25,13 @@
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/user" class="btn btn-outline-dark">Users</a></li>
-            <li><a href="<%=request.getContextPath()%>/group" class="btn btn-outline-dark">Groups</a></li>
+            <li><a href="<%=request.getContextPath()%>/user" class="btn btn-outline-dark mr-2">Users</a></li>
+            <li><a href="<%=request.getContextPath()%>/group" class="btn btn-outline-dark mr-2">Groups</a></li>
+            <li><a href="<%=request.getContextPath()%>/post" class="btn btn-outline-dark mr-2">Post</a></li>
+            <li><a href="<%=request.getContextPath()%>/groupofusers" class="btn btn-outline-dark mr-2">Group of
+                users</a></li>
+            <li><a href="<%=request.getContextPath()%>/subscriptin" class="btn btn-outline-dark mr-2">Subscription</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -58,18 +63,18 @@
 
                     <fieldset class="form-group">
                         <label>name</label> <input type="text" value="<c:out value='${group.groupName}' />"
-                                                    class="form-control" name="groupName" required="required">
+                                                   class="form-control" name="groupName" required="required">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>comment</label> <input type="text" value="<c:out value='${group.groupComment}' />"
-                                                       class="form-control" name="groupComment">
+                                                      class="form-control" name="groupComment">
                     </fieldset>
 
-                        <fieldset class="form-group">
-                            <label>comment</label> <input type="text" value="<c:out value='${group.creatingDate}' />"
-                                                          class="form-control disabled" name="creatingDate">
-                        </fieldset>
+                    <fieldset class="form-group" >
+                        <input type="hidden" value="<c:out value='${group.creatingDate}' />"
+                                                      class="form-control" name="creatingDate">
+                    </fieldset>
 
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>

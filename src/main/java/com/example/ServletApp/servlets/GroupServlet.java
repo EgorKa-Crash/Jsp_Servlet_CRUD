@@ -32,9 +32,6 @@ public class GroupServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        String action2 = request.getRequestURI();
-        String action1 = request.getContextPath();
-        String action3 = request.getPathInfo();
 
         try {
             switch (action) {
