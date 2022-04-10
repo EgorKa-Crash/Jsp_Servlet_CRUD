@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Егор
-  Date: 09.04.2022
-  Time: 21:34
+  Date: 10.04.2022
+  Time: 14:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,7 +28,8 @@
             <li><a href="<%=request.getContextPath()%>/user" class="btn btn-outline-dark mr-2">Users</a></li>
             <li><a href="<%=request.getContextPath()%>/group" class="btn btn-outline-dark mr-2">Groups</a></li>
             <li><a href="<%=request.getContextPath()%>/post" class="btn btn-outline-dark mr-2">Post</a></li>
-            <li><a href="<%=request.getContextPath()%>/groupOfUsers" class="btn btn-outline-dark mr-2">Group of users</a>
+            <li><a href="<%=request.getContextPath()%>/groupOfUsers" class="btn btn-outline-dark mr-2">Group of
+                users</a>
             </li>
             <li><a href="<%=request.getContextPath()%>/subscriptin" class="btn btn-outline-dark mr-2">Subscription</a>
             </li>
@@ -39,42 +40,30 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-            <c:if test="${post != null}">
-            <form action="updatePost" method="post">
-                </c:if>
-                <c:if test="${post == null}">
-                <form action="insertPost" method="post">
-                    </c:if>
+<%--            <c:if test="${post != null}">--%>
+<%--            <form action="updatePost" method="post">--%>
+<%--                </c:if>--%>
+<%--                <c:if test="${post == null}">--%>
+<%--                <form action="insertPost" method="post">--%>
+<%--                    </c:if>--%>
+
+                        <form action="insertGroupOfUsers" method="post">
 
                     <caption>
                         <h2>
-                            <c:if test="${post != null}">
-                                Edit post
-                            </c:if>
-                            <c:if test="${post == null}">
-                                Add new post
-                            </c:if>
+                            Add new group subscription
+                            <%--                            <c:if test="${post != null}">--%>
+                            <%--                                Edit post--%>
+                            <%--                            </c:if>--%>
+                            <%--                            <c:if test="${post == null}">--%>
+                            <%--                                Add new post--%>
+                            <%--                            </c:if>--%>
                         </h2>
                     </caption>
 
-                    <c:if test="${post != null}">
-                        <input type="hidden" name="postId" value="<c:out value='${post.postId}' />"/>
-                    </c:if>
-
-                    <fieldset class="form-post">
-                        <label>postHeader</label> <input type="text" value="<c:out value='${post.postHeader}' />"
-                                                         class="form-control" name="postHeader" required="required">
-                    </fieldset>
-
-                    <fieldset class="form-post">
-                        <input type="hidden" value="<c:out value='${post.createDate}' />"
-                                                         class="form-control" name="createDate">
-                    </fieldset>
-
-                    <fieldset class="form-post">
-                        <label>postContent</label> <input type="text" value="<c:out value='${post.postContent}' />"
-                                                          class="form-control disabled" name="postContent">
-                    </fieldset>
+                    <%--                    <c:if test="${post != null}">--%>
+                    <%--                        <input type="hidden" name="postId" value="<c:out value='${post.postId}' />"/>--%>
+                    <%--                    </c:if>--%>
 
                     <fieldset class="form-post">
                         <tr>
@@ -83,7 +72,19 @@
                         <tr>
                             <select class="form-control" name="userId">
                                 <c:forEach var="user" items="${users}">
-                                    <option>ID: ${user.userId}   Login: ${user.login}</option>
+                                    <option>ID: ${user.userId} Login: ${user.login}</option>
+                                </c:forEach>
+                            </select>
+                    </fieldset>
+
+                    <fieldset class="form-post">
+                        <tr>
+                            <td>groupId</td>
+                            <td>
+                        <tr>
+                            <select class="form-control" name="groupId">
+                                <c:forEach var="group" items="${groups}">
+                                    <option>ID: ${group.groupId} Name: ${group.groupName}</option>
                                 </c:forEach>
                             </select>
                     </fieldset>

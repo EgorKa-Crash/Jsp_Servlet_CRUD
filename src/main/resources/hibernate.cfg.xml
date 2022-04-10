@@ -10,10 +10,11 @@
     <property name="hibernate.connection.username">Test</property>
     <property name="hibernate.connection.password">1234</property>
     <property name="show_sql">true</property>
-<!--    <mapping class="model.Groupofusers"/>-->
+
     <mapping class="com.example.ServletApp.entities.Groupp"/>
     <mapping class="com.example.ServletApp.entities.Post"/>
 <!--    <mapping class="model.Subscriptin"/>-->
     <mapping class="com.example.ServletApp.entities.Userr"/>
+    <mapping class="com.example.ServletApp.entities.GroupOfUsers"/>
   </session-factory>
 </hibernate-configuration>

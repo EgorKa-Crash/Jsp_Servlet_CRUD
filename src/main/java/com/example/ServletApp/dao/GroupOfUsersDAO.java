@@ -1,61 +1,62 @@
 package com.example.ServletApp.dao;
 
-import com.example.ServletApp.entities.Post;
+import com.example.ServletApp.entities.GroupOfUsers;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
-public class PostDAO {
-    public static void insertPost(Post post) {
-        Date date = new Date();
-        post.setCreateDate(new Timestamp(date.getTime()));
+public class GroupOfUsersDAO {
+    public static void insertGroupOfUsers(GroupOfUsers groupOfUsers) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.save(post);
+        session.save(groupOfUsers);
         session.getTransaction().commit();
         session.close();
     }
 
-    public static void updatePost(Post post) {
+    public static void updateGroupOfUsers(GroupOfUsers groupOfUsers) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.update(post);
+        session.update(groupOfUsers);
         session.getTransaction().commit();
         session.close();
     }
 
-    public static void deletePost(int Id) {
-
+    public static void deleteGroupOfUsers(int userId, int groupId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Post WHERE postId = " + Id);
+        Query query = session.createQuery("DELETE FROM GroupOfUsers WHERE (userId = :userId AND groupId = :groupId)");
+        query.setParameter("userId", userId);
+        query.setParameter("groupId", groupId);
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
 
-    public static Post getPost(int Id) {
+    public static GroupOfUsers getGroupOfUsers(int userId, int groupId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Post post = session.get(Post.class,Id);
+        Query query = session.createQuery("FROM GroupOfUsers WHERE (userId = :userId AND groupId = :groupId)");
+        query.setParameter("userId", userId);
+        query.setParameter("groupId", groupId);
+        GroupOfUsers groupOfUsers = (GroupOfUsers)query.list().get(0);//  get(GroupOfUsers.class,Id);
+
         session.close();
-        return post;
+        return groupOfUsers;
     }
 
 
-    public static List<Post> getAllOfPost() {
-        List<Post> post;
+    public static List<GroupOfUsers> getAllOfGroupOfUsers() {
+        List<GroupOfUsers> groupOfUsers;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        post = loadAllData(Post.class, session);
+        groupOfUsers = loadAllData(GroupOfUsers.class, session);
         session.close();
-        return post;
+        return groupOfUsers;
     }
 
     private static <T> List<T> loadAllData(Class<T> type, Session session) {
@@ -66,4 +67,3 @@ public class PostDAO {
         return data;
     }
 }
-
