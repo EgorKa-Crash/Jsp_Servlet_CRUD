@@ -40,30 +40,13 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-<%--            <c:if test="${post != null}">--%>
-<%--            <form action="updatePost" method="post">--%>
-<%--                </c:if>--%>
-<%--                <c:if test="${post == null}">--%>
-<%--                <form action="insertPost" method="post">--%>
-<%--                    </c:if>--%>
-
                         <form action="insertGroupOfUsers" method="post">
 
                     <caption>
                         <h2>
                             Add new group subscription
-                            <%--                            <c:if test="${post != null}">--%>
-                            <%--                                Edit post--%>
-                            <%--                            </c:if>--%>
-                            <%--                            <c:if test="${post == null}">--%>
-                            <%--                                Add new post--%>
-                            <%--                            </c:if>--%>
                         </h2>
                     </caption>
-
-                    <%--                    <c:if test="${post != null}">--%>
-                    <%--                        <input type="hidden" name="postId" value="<c:out value='${post.postId}' />"/>--%>
-                    <%--                    </c:if>--%>
 
                     <fieldset class="form-post">
                         <tr>
