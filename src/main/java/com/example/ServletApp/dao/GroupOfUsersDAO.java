@@ -1,6 +1,8 @@
 package com.example.ServletApp.dao;
 
 import com.example.ServletApp.entities.GroupOfUsers;
+import com.example.ServletApp.entities.Groupp;
+import com.example.ServletApp.entities.Userr;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -26,29 +28,16 @@ public class GroupOfUsersDAO {
         session.close();
     }
 
-    public static void deleteGroupOfUsers(int userId, int groupId) {
+    public static void deleteGroupOfUsers(Userr user, Groupp group) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM GroupOfUsers WHERE (userId = :userId AND groupId = :groupId)");
-        query.setParameter("userId", userId);
-        query.setParameter("groupId", groupId);
+        Query query = session.createQuery("DELETE FROM GroupOfUsers WHERE (group = :group AND user = :user)");
+        query.setParameter("group", group);
+        query.setParameter("user", user);
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
-
-    public static GroupOfUsers getGroupOfUsers(int userId, int groupId) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        Query query = session.createQuery("FROM GroupOfUsers WHERE (userId = :userId AND groupId = :groupId)");
-        query.setParameter("userId", userId);
-        query.setParameter("groupId", groupId);
-        GroupOfUsers groupOfUsers = (GroupOfUsers)query.list().get(0);//  get(GroupOfUsers.class,Id);
-
-        session.close();
-        return groupOfUsers;
-    }
-
 
     public static List<GroupOfUsers> getAllOfGroupOfUsers() {
         List<GroupOfUsers> groupOfUsers;

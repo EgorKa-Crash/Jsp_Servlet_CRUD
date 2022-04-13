@@ -1,59 +1,54 @@
 package com.example.ServletApp.dao;
 
-import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.entities.*;
 import com.example.ServletApp.hibernate.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
-public class UserDAO {
-
-    public static void insertUser(Userr userr) {
-
+public class SubscriptionsDAO {
+    public static void insertSubscriptions(Subscriptions subscriptions) {
+        Date date = new Date();
+        subscriptions.setSubscriptionDate (new Timestamp(date.getTime()));
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.save(userr);
+        session.save(subscriptions);
         session.getTransaction().commit();
         session.close();
     }
 
-    public static void updateUser(Userr userr) {
-
+    public static void updateSubscriptions(Subscriptions subscriptions) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.update(userr);
+        session.update(subscriptions);
         session.getTransaction().commit();
         session.close();
     }
 
-    public static void deleteUser(int Id) {
-
+    public static void deleteSubscriptions(Userr user, Userr subscriber) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.remove(session.get(Userr.class,Id));
+
+        Query query = session.createQuery("DELETE FROM Subscriptions WHERE (subscriber = :subscriber AND user = :user)");
+        query.setParameter("subscriber", subscriber);
+        query.setParameter("user", user);
+        query.executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
 
-    public static Userr getUser(int Id) {
+    public static List<Subscriptions> getAllOfSubscriptions() {
+        List<Subscriptions> subscriptions;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Userr user = session.get(Userr.class,Id);
+        subscriptions = loadAllData(Subscriptions.class, session);
         session.close();
-        return user;
-    }
-
-
-    public static List<Userr> getAllOfUsers() {
-        List<Userr> users = new ArrayList<>();
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        users = loadAllData(Userr.class, session);
-        session.close();
-        return users;
+        return subscriptions;
     }
 
     private static <T> List<T> loadAllData(Class<T> type, Session session) {

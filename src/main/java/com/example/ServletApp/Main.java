@@ -14,7 +14,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         //GroupDAO groupDAO = new GroupDAO();
-//        List<Userr> listUser = userDAO.getAllOfUsers();
+        UserDAO userDAO = new UserDAO();
+        List<Userr> listUser = userDAO.getAllOfUsers();
 //        listUser.stream().forEach(System.out::println);
 //
 //        Userr existingUser = userDAO.getUser(1);
@@ -27,10 +28,11 @@ public class Main {
         //listGroup.stream().forEach(System.out::println);
 
 
-        List<GroupOfUsers> listGroup = GroupOfUsersDAO.getAllOfGroupOfUsers();
-        listGroup.stream().forEach(System.out::println);
 
-        System.out.println(GroupOfUsersDAO.getGroupOfUsers(1,1));
+        //List<GroupOfUsers> listGroup = GroupOfUsersDAO.getAllOfGroupOfUsers();
+        //listGroup.stream().forEach(System.out::println);
+
+        //System.out.println(GroupOfUsersDAO.getGroupOfUsers(1,1));
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.ServletApp.dao;
 
 import com.example.ServletApp.entities.Post;
+import com.example.ServletApp.entities.Userr;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -34,8 +35,9 @@ public class PostDAO {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Post WHERE postId = " + Id);
-        query.executeUpdate();
+//        Query query = session.createQuery("DELETE FROM Post WHERE postId = " + Id);
+//        query.executeUpdate();
+        session.remove(session.get(Post.class,Id));
         session.getTransaction().commit();
         session.close();
     }

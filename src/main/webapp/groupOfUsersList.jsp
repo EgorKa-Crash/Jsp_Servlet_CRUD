@@ -30,7 +30,7 @@
             <li><a href="<%=request.getContextPath()%>/post" class="btn btn-outline-dark mr-2">Post</a></li>
             <li><a href="<%=request.getContextPath()%>/groupOfUsers" class="btn btn-outline-dark mr-2">Group of
                 users</a></li>
-            <li><a href="<%=request.getContextPath()%>/subscriptin" class="btn btn-outline-dark mr-2">Subscription</a>
+            <li><a href="<%=request.getContextPath()%>/subscriptions" class="btn btn-outline-dark mr-2">Subscription</a>
             </li>
         </ul>
     </nav>
@@ -62,15 +62,15 @@
 
                 <tr>
                     <td>
-                        <c:out value="${GroupOfUsers.groupId}"/>
+                        <c:out value="${GroupOfUsers.group.groupId}"/>
                     </td>
                     <td>
-                        <c:out value="${GroupOfUsers.userId}"/>
+                        <c:out value="${GroupOfUsers.user.userId}"/>
                     </td>
                     <td>
                             <%--                        <a href="editGroup?groupId=<c:out value='${group.groupId}'  />" class="btn btn-success" >Edit</a>--%>
                             <%--                        &nbsp;&nbsp;&nbsp;&nbsp;--%>
-                        <a href="deleteGroupOfUsers?groupId=<c:out value='${GroupOfUsers.groupId}'/>&userId=<c:out value='${GroupOfUsers.userId}'/>"
+                        <a href="deleteGroupOfUsers?groupId=<c:out value='${GroupOfUsers.group.groupId}'/>&userId=<c:out value='${GroupOfUsers.user.userId}'/>"
                            class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>

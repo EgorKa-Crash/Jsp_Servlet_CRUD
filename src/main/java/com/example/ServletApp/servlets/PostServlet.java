@@ -96,7 +96,8 @@ public class PostServlet  extends HttpServlet {
         String userString = request.getParameter("userId");
         userString = userString.replaceFirst(".*?(\\d+).*", "$1");
         int userId = Integer.parseInt(userString);
-        Post newPost = new Post(postHeader, postComment,userId);
+        Userr user = userDAO.getUser(userId);
+        Post newPost = new Post(postHeader, postComment,user);
         postDAO.insertPost(newPost);
         response.sendRedirect("post");
     }
@@ -112,7 +113,8 @@ public class PostServlet  extends HttpServlet {
         String userString = request.getParameter("userId");
         userString = userString.replaceFirst(".*?(\\d+).*", "$1");
         int userId = Integer.parseInt(userString);
-        Post updatePost = new Post(postId, postHeader, createDate, postComment,userId);
+        Userr user = userDAO.getUser(userId);
+        Post updatePost = new Post(postId, postHeader, createDate, postComment,user);
         postDAO.updatePost(updatePost);
         response.sendRedirect("post");
     }

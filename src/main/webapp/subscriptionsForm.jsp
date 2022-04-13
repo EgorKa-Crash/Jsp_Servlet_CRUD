@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Егор
-  Date: 10.04.2022
-  Time: 14:38
+  Date: 13.04.2022
+  Time: 14:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -40,40 +40,40 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-                        <form action="insertGroupOfUsers" method="post">
+            <form action="insertSubscriptions" method="post">
 
-                    <caption>
-                        <h2>
-                            Add new group subscription
-                        </h2>
-                    </caption>
+                <caption>
+                    <h2>
+                        Add new subscription
+                    </h2>
+                </caption>
 
-                    <fieldset class="form-post">
-                        <tr>
-                            <td>userId</td>
-                            <td>
-                        <tr>
-                            <select class="form-control" name="userId">
-                                <c:forEach var="user" items="${users}">
-                                    <option>ID: ${user.userId} Login: ${user.login}</option>
-                                </c:forEach>
-                            </select>
-                    </fieldset>
+                <fieldset class="form-post">
+                    <tr>
+                        <td>userId</td>
+                        <td>
+                    <tr>
+                        <select class="form-control" name="userId">
+                            <c:forEach var="user" items="${users}">
+                                <option>ID: ${user.userId} Login: ${user.login}</option>
+                            </c:forEach>
+                        </select>
+                </fieldset>
 
-                    <fieldset class="form-post">
-                        <tr>
-                            <td>groupId</td>
-                            <td>
-                        <tr>
-                            <select class="form-control" name="groupId">
-                                <c:forEach var="group" items="${groups}">
-                                    <option>ID: ${group.groupId} Name: ${group.groupName}</option>
-                                </c:forEach>
-                            </select>
-                    </fieldset>
+                <fieldset class="form-post">
+                    <tr>
+                        <td>groupId</td>
+                        <td>
+                    <tr>
+                        <select class="form-control" name="subscriberId">
+                            <c:forEach var="subscriber" items="${subscribers}">
+                                <option>ID: ${subscriber.userId} Login: ${subscriber.login}</option>
+                            </c:forEach>
+                        </select>
+                </fieldset>
 
-                    <button type="submit" class="btn btn-success mt-3">Save</button>
-                </form>
+                <button type="submit" class="btn btn-success mt-3">Save</button>
+            </form>
         </div>
     </div>
 </div>

@@ -1,15 +1,12 @@
 package com.example.ServletApp.dao;
 
 import com.example.ServletApp.entities.Groupp;
-import com.example.ServletApp.entities.Userr;
 import com.example.ServletApp.hibernate.HibernateUtil;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,8 +33,7 @@ public class GroupDAO {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Groupp WHERE groupId = " + Id);
-        query.executeUpdate();
+        session.remove(session.get(Groupp.class,Id));
         session.getTransaction().commit();
         session.close();
     }
@@ -56,20 +52,8 @@ public class GroupDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         group = loadAllData(Groupp.class, session);
-        //users.stream().forEach(x -> System.out.println(x.toString()));
         session.close();
         return group;
-
-//        List<Groupp> group;
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        session.getTransaction().begin();
-//        Query query = session.createQuery("FROM Groupp");
-//        group = query.list();
-//        session.close();
-//        return group;
-
-//        List list = getSessionFactory().getCurrentSession().createQuery("from Group").list();
-//        return (List<Group>) list;
     }
 
     private static <T> List<T> loadAllData(Class<T> type, Session session) {

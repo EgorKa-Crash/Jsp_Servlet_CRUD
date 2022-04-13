@@ -60,10 +60,6 @@ public class UserServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
 
        List<Userr> listUser = userDAO.getAllOfUsers();
-        //List<Userr> listUser = new ArrayList<>();
-        //listUser.add(new Userr(1,"1","1","1","1"));
-        //listUser.add(new Userr(2,"2","1","1","1"));
-        //listUser.add(new Userr(3,"3","1","1","1"));
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("userList.jsp");
         dispatcher.forward(request, response);

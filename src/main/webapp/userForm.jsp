@@ -22,7 +22,7 @@
             <li><a href="<%=request.getContextPath()%>/group" class="btn btn-outline-dark mr-2">Groups</a></li>
             <li><a href="<%=request.getContextPath()%>/post" class="btn btn-outline-dark mr-2">Post</a></li>
             <li><a href="<%=request.getContextPath()%>/groupOfUsers" class="btn btn-outline-dark mr-2">Group of users</a></li>
-            <li><a href="<%=request.getContextPath()%>/subscriptin" class="btn btn-outline-dark mr-2">Subscription</a></li>
+            <li><a href="<%=request.getContextPath()%>/subscriptions" class="btn btn-outline-dark mr-2">Subscription</a></li>
         </ul>
     </nav>
 </header>
@@ -59,17 +59,17 @@
 
                     <fieldset class="form-group">
                         <label>password</label> <input type="text" value="<c:out value='${user.password}' />"
-                                                         class="form-control" name="password">
+                                                         class="form-control" name="password" required="required">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>email</label> <input type="text" value="<c:out value='${user.email}' />"
-                                                           class="form-control" name="email">
+                                                           class="form-control" name="email" required="required">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>nickname</label> <input type="text" value="<c:out value='${user.nickName}' />"
-                                                           class="form-control" name="nickName">
+                                                           class="form-control" name="nickName"  required="required">
                     </fieldset>
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>

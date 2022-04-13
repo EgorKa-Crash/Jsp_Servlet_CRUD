@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -109,7 +108,9 @@ public class GroupOfUsersServlet extends HttpServlet {
         userString = userString.replaceFirst(".*?(\\d+).*", "$1");
         int userId = Integer.parseInt(userString);
         int groupId = Integer.parseInt(groupString);
-        GroupOfUsers newGroupOfUsers = new GroupOfUsers(userId, groupId);
+        Userr user = userDAO.getUser(userId);
+        Groupp group = groupDAO.getGroupp(groupId);
+        GroupOfUsers newGroupOfUsers = new GroupOfUsers(user, group);
         groupOfUsersDAO.insertGroupOfUsers(newGroupOfUsers);
         response.sendRedirect("groupOfUsers");
     }
@@ -135,8 +136,9 @@ public class GroupOfUsersServlet extends HttpServlet {
 
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         int userId = Integer.parseInt(request.getParameter("userId"));
-
-        groupOfUsersDAO.deleteGroupOfUsers(userId, groupId);
+        Userr user = userDAO.getUser(userId);
+        Groupp group = groupDAO.getGroupp(groupId);
+        groupOfUsersDAO.deleteGroupOfUsers(user, group);
         response.sendRedirect("groupOfUsers");
     }
 }
