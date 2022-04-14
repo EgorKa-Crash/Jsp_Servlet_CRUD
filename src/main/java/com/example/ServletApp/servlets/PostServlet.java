@@ -4,6 +4,7 @@ import com.example.ServletApp.dao.PostDAO;
 import com.example.ServletApp.dao.UserDAO;
 import com.example.ServletApp.entities.Post;
 import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.exception.ErrorObj;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,8 +67,10 @@ public class PostServlet  extends HttpServlet {
 
         List<Post> listPost = postDAO.getAllOfPost();
         request.setAttribute("listPost", listPost);
+        request.setAttribute("error", new ErrorObj());
         RequestDispatcher dispatcher = request.getRequestDispatcher("postList.jsp");
         dispatcher.forward(request, response);
+        ErrorObj.setIsAble(false);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)

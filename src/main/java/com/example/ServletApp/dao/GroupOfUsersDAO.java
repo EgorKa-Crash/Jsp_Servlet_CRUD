@@ -3,6 +3,7 @@ package com.example.ServletApp.dao;
 import com.example.ServletApp.entities.GroupOfUsers;
 import com.example.ServletApp.entities.Groupp;
 import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.exception.ErrorObj;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,8 +16,13 @@ public class GroupOfUsersDAO {
     public static void insertGroupOfUsers(GroupOfUsers groupOfUsers) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.save(groupOfUsers);
-        session.getTransaction().commit();
+        try {
+            session.save(groupOfUsers);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            ErrorObj error = new ErrorObj(true,"Ошибка, вы уже подписаны на данную группу");
+        }
         session.close();
     }
 

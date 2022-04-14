@@ -1,6 +1,7 @@
 package com.example.ServletApp.dao;
 
 import com.example.ServletApp.entities.*;
+import com.example.ServletApp.exception.ErrorObj;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,8 +18,13 @@ public class SubscriptionsDAO {
         subscriptions.setSubscriptionDate (new Timestamp(date.getTime()));
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.save(subscriptions);
-        session.getTransaction().commit();
+        try {
+            session.save(subscriptions);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            ErrorObj error = new ErrorObj(true,"Ошибка, данная подписка уже существует");
+        }
         session.close();
     }
 

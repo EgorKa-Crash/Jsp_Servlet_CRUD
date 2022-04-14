@@ -2,6 +2,7 @@ package com.example.ServletApp.servlets;
 
 import com.example.ServletApp.dao.UserDAO;
 import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.exception.ErrorObj;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,11 +59,12 @@ public class UserServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-
-       List<Userr> listUser = userDAO.getAllOfUsers();
+        List<Userr> listUser = userDAO.getAllOfUsers();
         request.setAttribute("listUser", listUser);
+        request.setAttribute("error", new ErrorObj());
         RequestDispatcher dispatcher = request.getRequestDispatcher("userList.jsp");
         dispatcher.forward(request, response);
+        ErrorObj.setIsAble(false);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)

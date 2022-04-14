@@ -1,6 +1,7 @@
 package com.example.ServletApp.dao;
 
 import com.example.ServletApp.entities.Groupp;
+import com.example.ServletApp.exception.ErrorObj;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
@@ -16,16 +17,26 @@ public class GroupDAO {
         group.setCreatingDate(new Timestamp(date.getTime()));
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.save(group);
-        session.getTransaction().commit();
+        try {
+            session.save(group);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            ErrorObj error = new ErrorObj(true,"Ошибка добавления группы, данное имя группы уже занято");
+        }
         session.close();
     }
 
     public static void updateGroupp(Groupp group) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.update(group);
-        session.getTransaction().commit();
+        try {
+            session.update(group);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            ErrorObj error = new ErrorObj(true,"Ошибка изменения группы, данное имя группы уже занято");
+        }
         session.close();
     }
 

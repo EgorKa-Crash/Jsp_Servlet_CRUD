@@ -6,6 +6,7 @@ import com.example.ServletApp.dao.UserDAO;
 import com.example.ServletApp.entities.GroupOfUsers;
 import com.example.ServletApp.entities.Groupp;
 import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.exception.ErrorObj;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,8 +71,10 @@ public class GroupOfUsersServlet extends HttpServlet {
 
         List<GroupOfUsers> listGroupOfUsers = groupOfUsersDAO.getAllOfGroupOfUsers();
         request.setAttribute("listGroupOfUsers", listGroupOfUsers);
+        request.setAttribute("error", new ErrorObj());
         RequestDispatcher dispatcher = request.getRequestDispatcher("groupOfUsersList.jsp");
         dispatcher.forward(request, response);
+        ErrorObj.setIsAble(false);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)

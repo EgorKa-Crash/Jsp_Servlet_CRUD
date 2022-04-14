@@ -1,3 +1,4 @@
+<%@ page import="com.example.ServletApp.exception.ErrorObj" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -9,6 +10,32 @@
 </head>
 
 <body>
+
+<%--<c:set var="error" value = '${error}'/>--%>
+
+<%--<script type="text/javascript">--%>
+<%--    alert(${error.messange} ${error.isAble});--%>
+<%--</script>--%>
+
+<%--<c:out value="${error}"/>--%>
+
+<%--<c:out value="${error.isAble}"/>--%>
+<%--<c:if test="${error.isAble}">--%>
+<%--    <script type="text/javascript">--%>
+<%--        alert(${error.messange});--%>
+<%--    </script>--%>
+<%--</c:if>--%>
+
+
+<%
+    ErrorObj errorObj = (ErrorObj) request.getAttribute("error");
+    if(errorObj.isIsAble()){
+        out.println("<script type=\"text/javascript\">\n" +
+                "        alert(\""+errorObj.getMessange() +"\");\n" +
+                "    </script>");
+    }
+%>
+
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #aaa">
@@ -52,7 +79,6 @@
             </thead>
             <tbody>
             <c:forEach var="user" items="${listUser}">
-
                 <tr>
                     <td>
                         <c:out value="${user.userId}" />

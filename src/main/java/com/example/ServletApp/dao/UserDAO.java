@@ -1,6 +1,7 @@
 package com.example.ServletApp.dao;
 
 import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.exception.ErrorObj;
 import com.example.ServletApp.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
@@ -15,17 +16,27 @@ public class UserDAO {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.save(userr);
-        session.getTransaction().commit();
+        try{
+            session.save(userr);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            ErrorObj error = new ErrorObj(true,"Ошибка добавления пользователя");
+        }
         session.close();
     }
 
     public static void updateUser(Userr userr) {
-
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.update(userr);
-        session.getTransaction().commit();
+        try {
+            session.update(userr);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            ErrorObj error = new ErrorObj(true,"Ошибка изменения пользователя");
+        }
+
         session.close();
     }
 

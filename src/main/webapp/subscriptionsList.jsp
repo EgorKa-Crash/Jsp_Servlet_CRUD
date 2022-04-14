@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.ServletApp.exception.ErrorObj" %><%--
   Created by IntelliJ IDEA.
   User: Егор
   Date: 13.04.2022
@@ -17,6 +17,15 @@
 </head>
 
 <body>
+
+<%
+    ErrorObj errorObj = (ErrorObj) request.getAttribute("error");
+    if(errorObj.isIsAble()){
+        out.println("<script type=\"text/javascript\">\n" +
+                "        alert(\""+errorObj.getMessange() +"\");\n" +
+                "    </script>");
+    }
+%>
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #aaa">

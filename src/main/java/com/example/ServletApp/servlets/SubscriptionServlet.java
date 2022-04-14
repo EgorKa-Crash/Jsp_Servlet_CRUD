@@ -4,6 +4,7 @@ import com.example.ServletApp.dao.SubscriptionsDAO;
 import com.example.ServletApp.dao.UserDAO;
 import com.example.ServletApp.entities.Subscriptions;
 import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.exception.ErrorObj;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,8 +60,10 @@ public class SubscriptionServlet extends HttpServlet {
 
         List<Subscriptions> listSubscriptions = subscriptionsDAO.getAllOfSubscriptions();
         request.setAttribute("listSubscriptions", listSubscriptions);
+        request.setAttribute("error", new ErrorObj());
         RequestDispatcher dispatcher = request.getRequestDispatcher("subscriptionsList.jsp");
         dispatcher.forward(request, response);
+        ErrorObj.setIsAble(false);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
