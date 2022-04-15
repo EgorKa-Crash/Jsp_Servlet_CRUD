@@ -19,11 +19,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 
+
+
 @WebServlet(urlPatterns = {"/groupOfUsers", "/newGroupOfUsers", "/insertGroupOfUsers", "/deleteGroupOfUsers", "/editGroupOfUsers" }) //, "/updateGroupOfUsers"
 public class GroupOfUsersServlet extends HttpServlet {
     private GroupOfUsersDAO groupOfUsersDAO;
     private UserDAO userDAO;
     private GroupDAO groupDAO;
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        super.service(req, resp);
+    }
 
     public void init() {
         groupOfUsersDAO = new GroupOfUsersDAO();

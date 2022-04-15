@@ -69,7 +69,6 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Login</th>
                 <th>Password</th>
                 <th>Email</th>
@@ -80,9 +79,6 @@
             <tbody>
             <c:forEach var="user" items="${listUser}">
                 <tr>
-                    <td>
-                        <c:out value="${user.userId}" />
-                    </td>
                     <td>
                         <c:out value="${user.login}" />
                     </td>

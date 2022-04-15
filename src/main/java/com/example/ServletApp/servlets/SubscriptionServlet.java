@@ -21,6 +21,12 @@ public class SubscriptionServlet extends HttpServlet {
     private SubscriptionsDAO subscriptionsDAO;
     private UserDAO userDAO;
 
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        super.service(req, resp);
+    }
+
     public void init() {
         subscriptionsDAO = new SubscriptionsDAO();
         userDAO = new UserDAO();
@@ -96,9 +102,9 @@ public class SubscriptionServlet extends HttpServlet {
 
         int subscriberId = Integer.parseInt(request.getParameter("subscriberId"));
         int userId = Integer.parseInt(request.getParameter("userId"));
-        Userr user = userDAO.getUser(userId);
-        Userr subscriber = userDAO.getUser(subscriberId);
-        subscriptionsDAO.deleteSubscriptions(user, subscriber);
+//        Userr user = userDAO.getUser(userId);
+//        Userr subscriber = userDAO.getUser(subscriberId);
+        subscriptionsDAO.deleteSubscriptions(userId, subscriberId);
         response.sendRedirect("subscriptions");
     }
 }

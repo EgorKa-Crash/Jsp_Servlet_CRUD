@@ -21,6 +21,12 @@ import java.util.List;
 public class GroupServlet extends HttpServlet {
     private GroupDAO groupDAO;
 
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        super.service(req, resp);
+    }
+
     public void init() {
         groupDAO = new GroupDAO();
     }

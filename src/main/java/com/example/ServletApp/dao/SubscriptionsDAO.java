@@ -36,11 +36,11 @@ public class SubscriptionsDAO {
         session.close();
     }
 
-    public static void deleteSubscriptions(Userr user, Userr subscriber) {
+    public static void deleteSubscriptions(int user, int subscriber) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
 
-        Query query = session.createQuery("DELETE FROM Subscriptions WHERE (subscriber = :subscriber AND user = :user)");
+        Query query = session.createQuery("DELETE FROM Subscriptions WHERE (subscriber.userId = :subscriber AND user.userId = :user)");
         query.setParameter("subscriber", subscriber);
         query.setParameter("user", user);
         query.executeUpdate();

@@ -58,7 +58,6 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Group name</th>
                 <th>Creating date</th>
                 <th>Groupc comment</th>
@@ -69,9 +68,6 @@
             <c:forEach var="group" items="${listGroupp}">
 
                 <tr>
-                    <td>
-                        <c:out value="${group.groupId}" />
-                    </td>
                     <td>
                         <c:out value="${group.groupName}" />
                     </td>

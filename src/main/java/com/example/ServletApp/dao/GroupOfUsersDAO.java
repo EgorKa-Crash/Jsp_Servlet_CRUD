@@ -37,10 +37,11 @@ public class GroupOfUsersDAO {
     public static void deleteGroupOfUsers(Userr user, Groupp group) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM GroupOfUsers WHERE (group = :group AND user = :user)");
-        query.setParameter("group", group);
-        query.setParameter("user", user);
-        query.executeUpdate();
+        session.remove(new GroupOfUsers(user, group));
+//        Query query = session.createQuery("DELETE FROM GroupOfUsers WHERE (group.groupId = :group AND user.userId = :user)");
+//        query.setParameter("group", group);
+//        query.setParameter("user", user);
+        //query.executeUpdate();
         session.getTransaction().commit();
         session.close();
     }

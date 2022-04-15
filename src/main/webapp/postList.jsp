@@ -59,7 +59,6 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Post header</th>
                 <th>Creating date</th>
                 <th>Comment</th>
@@ -71,9 +70,6 @@
             <c:forEach var="post" items="${listPost}">
 
                 <tr>
-                    <td>
-                        <c:out value="${post.postId}" />
-                    </td>
                     <td>
                         <c:out value="${post.postHeader}" />
                     </td>

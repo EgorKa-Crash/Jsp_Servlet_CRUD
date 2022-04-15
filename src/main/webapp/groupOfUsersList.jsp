@@ -61,8 +61,8 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Group ID</th>
-                <th>User ID</th>
+                <th>Group</th>
+                <th>User</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -71,10 +71,10 @@
 
                 <tr>
                     <td>
-                        <c:out value="${GroupOfUsers.group.groupId}"/>
+                        <c:out value="${GroupOfUsers.group.groupName}"/>
                     </td>
                     <td>
-                        <c:out value="${GroupOfUsers.user.userId}"/>
+                        <c:out value="${GroupOfUsers.user.nickName}"/>
                     </td>
                     <td>
                             <%--                        <a href="editGroup?groupId=<c:out value='${group.groupId}'  />" class="btn btn-success" >Edit</a>--%>
