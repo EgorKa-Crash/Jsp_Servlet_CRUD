@@ -77,8 +77,6 @@
                         <c:out value="${GroupOfUsers.user.nickName}"/>
                     </td>
                     <td>
-                            <%--                        <a href="editGroup?groupId=<c:out value='${group.groupId}'  />" class="btn btn-success" >Edit</a>--%>
-                            <%--                        &nbsp;&nbsp;&nbsp;&nbsp;--%>
                         <a href="deleteGroupOfUsers?groupId=<c:out value='${GroupOfUsers.group.groupId}'/>&userId=<c:out value='${GroupOfUsers.user.userId}'/>"
                            class="btn btn-outline-danger">Delete</a>
                     </td>

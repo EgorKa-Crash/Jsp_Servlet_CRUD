@@ -62,7 +62,7 @@
                 <th>Post header</th>
                 <th>Creating date</th>
                 <th>Comment</th>
-                <th>User ID</th>
+                <th>User</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -80,7 +80,7 @@
                         <c:out value="${post.postContent}" />
                     </td>
                     <td>
-                        <c:out value="${post.user.userId}" />
+                        <c:out value="${post.user.nickName}" />
                     </td>
                     <td>
                         <a href="editPost?postId=<c:out value='${post.postId}'  />" class="btn btn-success" >Edit</a>

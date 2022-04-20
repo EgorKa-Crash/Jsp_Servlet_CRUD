@@ -50,19 +50,19 @@
 
                     <fieldset class="form-post">
                         <tr>
-                            <td>userId</td>
+                            <td>user</td>
                             <td>
                         <tr>
                             <select class="form-control" name="userId">
                                 <c:forEach var="user" items="${users}">
-                                    <option>ID: ${user.userId} Login: ${user.login}</option>
+                                    <option>ID: ${user.userId} Login: ${user.nickName}</option>
                                 </c:forEach>
                             </select>
                     </fieldset>
 
                     <fieldset class="form-post">
                         <tr>
-                            <td>groupId</td>
+                            <td>group</td>
                             <td>
                         <tr>
                             <select class="form-control" name="groupId">
