@@ -7,64 +7,50 @@ import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
 
     public static void insertUser(Userr userr) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        try{
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.getTransaction().begin();
             session.save(userr);
             session.getTransaction().commit();
+        } catch (Exception e) {
+            ErrorObj error = new ErrorObj(true, "Ошибка добавления пользователя");
         }
-        catch (Exception e){
-            ErrorObj error = new ErrorObj(true,"Ошибка добавления пользователя");
-        }
-        session.close();
     }
 
     public static void updateUser(Userr userr) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        try {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.getTransaction().begin();
             session.update(userr);
             session.getTransaction().commit();
+        } catch (Exception e) {
+            ErrorObj error = new ErrorObj(true, "Ошибка изменения пользователя");
         }
-        catch (Exception e){
-            ErrorObj error = new ErrorObj(true,"Ошибка изменения пользователя");
-        }
-
-        session.close();
     }
 
     public static void deleteUser(int Id) {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        session.remove(session.get(Userr.class,Id));
-        session.getTransaction().commit();
-        session.close();
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.getTransaction().begin();
+            session.remove(session.get(Userr.class, Id));
+            session.getTransaction().commit();
+        }
     }
 
     public static Userr getUser(int Id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        Userr user = session.get(Userr.class,Id);
-        session.close();
-        return user;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            return session.get(Userr.class, Id);
+        }
     }
 
 
     public static List<Userr> getAllOfUsers() {
-        List<Userr> users = new ArrayList<>();
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        users = loadAllData(Userr.class, session);
-        session.close();
-        return users;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            return loadAllData(Userr.class, session);
+        }
     }
 
     private static <T> List<T> loadAllData(Class<T> type, Session session) {

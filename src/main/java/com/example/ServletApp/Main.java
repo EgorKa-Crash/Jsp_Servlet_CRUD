@@ -4,10 +4,7 @@ import com.example.ServletApp.dao.GroupDAO;
 import com.example.ServletApp.dao.GroupOfUsersDAO;
 import com.example.ServletApp.dao.PostDAO;
 import com.example.ServletApp.dao.UserDAO;
-import com.example.ServletApp.entities.GroupOfUsers;
-import com.example.ServletApp.entities.Groupp;
-import com.example.ServletApp.entities.Post;
-import com.example.ServletApp.entities.Userr;
+import com.example.ServletApp.entities.*;
 
 import java.util.List;
 
@@ -15,8 +12,11 @@ public class Main {
     public static void main(String[] args) {
         //GroupDAO groupDAO = new GroupDAO();
         UserDAO userDAO = new UserDAO();
-        List<Userr> listUser = userDAO.getAllOfUsers();
-//        listUser.stream().forEach(System.out::println);
+        List<Subscriptions> listUser = userDAO.getAllOfUsers().get(2).getSubscribers();
+
+
+        //System.out.println(listUser.stream().count());
+        //listUser.stream().forEach(System.out::println);
 //
 //        Userr existingUser = userDAO.getUser(1);
 //        System.out.println(existingUser);

@@ -15,46 +15,40 @@ import java.util.List;
 public class SubscriptionsDAO {
     public static void insertSubscriptions(Subscriptions subscriptions) {
         Date date = new Date();
-        subscriptions.setSubscriptionDate (new Timestamp(date.getTime()));
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        try {
+        subscriptions.setSubscriptionDate(new Timestamp(date.getTime()));
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.getTransaction().begin();
             session.save(subscriptions);
             session.getTransaction().commit();
+        } catch (Exception e) {
+            ErrorObj error = new ErrorObj(true, "Ошибка, данная подписка уже существует");
         }
-        catch (Exception e){
-            ErrorObj error = new ErrorObj(true,"Ошибка, данная подписка уже существует");
-        }
-        session.close();
     }
 
     public static void updateSubscriptions(Subscriptions subscriptions) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        session.update(subscriptions);
-        session.getTransaction().commit();
-        session.close();
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.getTransaction().begin();
+            session.update(subscriptions);
+            session.getTransaction().commit();
+        }
     }
 
     public static void deleteSubscriptions(int user, int subscriber) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-
-        Query query = session.createQuery("DELETE FROM Subscriptions WHERE (subscriber.userId = :subscriber AND user.userId = :user)");
-        query.setParameter("subscriber", subscriber);
-        query.setParameter("user", user);
-        query.executeUpdate();
-        session.getTransaction().commit();
-        session.close();
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.getTransaction().begin();
+            Query query = session.createQuery("DELETE FROM Subscriptions WHERE (subscriber.userId = :subscriber AND user.userId = :user)");
+            query.setParameter("subscriber", subscriber);
+            query.setParameter("user", user);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        }
     }
 
     public static List<Subscriptions> getAllOfSubscriptions() {
         List<Subscriptions> subscriptions;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        subscriptions = loadAllData(Subscriptions.class, session);
-        session.close();
-        return subscriptions;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            return loadAllData(Subscriptions.class, session);
+        }
     }
 
     private static <T> List<T> loadAllData(Class<T> type, Session session) {
